@@ -4,7 +4,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: grafana-pvc
 spec:
-  storageClassName: local-storage
+  storageClassName: local-path
   accessModes:
     - ReadWriteOnce
   resources:
