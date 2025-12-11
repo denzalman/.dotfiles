@@ -155,9 +155,6 @@ spec:
             - name: pods
               mountPath: /var/log/pods
               readOnly: true
-            - name: containers
-              mountPath: /var/lib/docker/containers
-              readOnly: true
       volumes:
         - name: config
           configMap:
@@ -169,10 +166,6 @@ spec:
         - name: pods
           hostPath:
             path: /var/log/pods
-            type: Directory
-        - name: containers
-          hostPath:
-            path: /var/lib/docker/containers
             type: Directory
       tolerations:
         - effect: NoSchedule
