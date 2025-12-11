@@ -13,11 +13,13 @@ spec:
     path: homelab/k8s/monitoring
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: monitoring
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
     retry:
       limit: 3
       backoff:

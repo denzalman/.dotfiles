@@ -10,7 +10,6 @@ data:
     server:
       http_listen_port: 3100
       grpc_listen_port: 9095
-      log_level: info
     
     common:
       path_prefix: /loki
@@ -33,22 +32,28 @@ data:
             prefix: index_
             period: 24h
     
-    storage_config:
-      tsdb_shipper:
-        active_index_directory: /loki/index
-        cache_location: /loki/cache
-      filesystem:
-        directory: /loki/chunks
+    pattern_ingester:
+      enabled: false
     
-    limits_config:
-      retention_period: 744h
-      reject_old_samples: true
-      reject_old_samples_max_age: 168h
+    ruler:
+      storage:
+        type: local
+        local:
+          directory: /loki/rules
+      rule_path: /loki/rules-temp
+      ring:
+        kvstore:
+          store: inmemory
     
     compactor:
       working_directory: /loki/compactor
       retention_enabled: true
       retention_delete_delay: 2h
+      delete_request_store: filesystem
+    
+    limits_config:
+      retention_period: 744h
+      split_queries_by_interval: 15m
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
