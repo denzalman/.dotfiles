@@ -120,6 +120,8 @@ spec:
     metadata:
       labels:
         app: promtail
+      annotations:
+        reloader.stakater.com/auto: "true"
     spec:
       serviceAccountName: promtail
       containers:

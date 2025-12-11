@@ -127,6 +127,8 @@ spec:
     metadata:
       labels:
         app: prometheus
+      annotations:
+        reloader.stakater.com/auto: "true"
     spec:
       containers:
         - name: prometheus

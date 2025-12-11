@@ -83,6 +83,8 @@ spec:
     metadata:
       labels:
         app: loki
+      annotations:
+        reloader.stakater.com/auto: "true"
     spec:
       containers:
         - name: loki
